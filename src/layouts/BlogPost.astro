@@ -1,0 +1,55 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import BaseHead from '../components/BaseHead.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import FormattedDate from '../components/FormattedDate.astro';
+
+type Props = CollectionEntry<'blog'>['data'];
+
+const { title, description, author, pubDate, updatedDate, heroImage } = Astro.props;
+---
+
+<html lang="en">
+	<head>
+		<BaseHead title={title} description={description} />
+	</head>
+
+	<body>
+		<Header isHero=true />
+		<main>
+			<article>
+				<div 
+					style={`
+						background: linear-gradient(to top, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.5)) 0% / cover, 
+								linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.25)),
+								url(${heroImage});
+						background-size: cover;
+					`}
+					class="absolute top-0 -z-10 w-full h-[80vh]"
+				>
+				</div>
+				<div class="w-[70%] m-auto pt-[70vh]">
+					<div>
+						<h1 class="text-5xl pt-4">{title}</h1>
+						<div class="w-max bg-gray-200 px-2 py-1 mt-2 mb-4 rounded-full">
+							<FormattedDate date={pubDate} />
+							{
+								updatedDate && (
+									<div class="last-updated-on">
+										Last updated on <FormattedDate date={updatedDate} />
+									</div>
+								)
+							}
+							<span>by {author}</span>
+						</div>
+						<!-- <hr class="text-2xl pt-4" /> -->
+					</div>
+					<slot />
+				</div>
+			</article>
+		</main>
+		<Footer />
+	</body>
+</html>
+

@@ -1,0 +1,84 @@
+---
+import BaseHead from '../components/BaseHead.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
+import { getCollection } from 'astro:content';
+import FormattedDate from '../components/FormattedDate.astro';
+
+const posts = (await getCollection('blog')).sort(
+	(a, b) => a.data.pubDate.valueOf() - b.data.pubDate.valueOf()
+);
+const heroPost = posts.find((post) => post.data.isHero);
+const sideHero1 = posts.find((post) => post.data.isSideHero1);
+const sideHero2 = posts.find((post) => post.data.isSideHero2);
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
+	</head>
+	<body>
+		<Header />
+		<main class="h-[90vh] flex gap-2 text-white p-4">
+			<section 
+				style={`
+					background: linear-gradient(to top, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.5)) 0% / cover, 
+							linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.25)),
+							url(${heroPost.data.heroImage});
+					background-size: cover;
+				`}		  
+				class="h-full w-[70%] flex flex-col justify-end gap-6 rounded-3xl p-4"
+			>
+				<span class="opacity-80 text-sm">{heroPost.data.category}</span>
+				<a href={`/blog/${heroPost.slug}/`}>
+					<h2 class="w-[70%] text-6xl">{heroPost.data.title}</h2>
+				</a>
+				<div class="flex gap-2">
+					<a href={`/blog/${heroPost.slug}/`}>
+						<button class="hover:bg-white hover:text-black border-2 border-solid border-opacity-70 rounded-full px-4 py-2">Read article</button>
+					</a>
+					<button class="flex gap-2 hover:bg-white hover:text-black border-2 border-solid border-opacity-70 rounded-full px-4 py-2">
+						<img 
+							class="h-6 w-6 rounded-full"
+							src="https://images.unsplash.com/photo-1557296387-5358ad7997bb?q=80&w=2063&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" 
+							alt="hero-author"
+						>
+						<span>by {heroPost.data.author}</span>
+					</button>
+				</div>
+			</section>
+			<section class="h-full w-[30%] flex flex-col gap-2">
+				<div 
+					style={`
+						background: linear-gradient(to top, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.5)) 0% / cover, 
+								linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.25)),
+								url(${sideHero1.data.heroImage});
+						background-size: cover;
+					`}	
+					class="h-1/2 flex flex-col justify-end gap-2 rounded-3xl p-4"
+				>
+					<a href={`/blog/${sideHero1.slug}/`}>
+						<span class="opacity-70">{sideHero1.data.category}</span>
+						<h3 class="text-3xl">{sideHero1.data.title}</h3>
+					</a>
+				</div>
+				<div 
+					style={`
+						background: linear-gradient(to top, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.5)) 0% / cover, 
+								linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.25)),
+								url(${sideHero2.data.heroImage});
+						background-size: cover;
+					`}	
+					class="h-1/2 flex flex-col justify-end gap-2 rounded-3xl p-4">
+					<a href={`/blog/${sideHero2.slug}/`}>
+						<span class="opacity-70">{sideHero2.data.category}</span>
+						<h3 class="text-3xl">{sideHero2.data.title}</h3>
+					</a>
+				</div>
+			</section>
+		</main>
+		<Footer />
+	</body>
+</html>
