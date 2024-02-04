@@ -8,5 +8,8 @@ import tailwind from "@astrojs/tailwind";
 // https://astro.build/config
 export default defineConfig({
   site: 'https://bould.nheek.com',
-  integrations: [mdx(), sitemap(), react(), tailwind()]
+  integrations: [mdx(), sitemap(), react(), tailwind()],
+  devOptions: {
+    port: 3007, // specify your desired port here
+  },
 });
