@@ -1,9 +1,8 @@
 ---
-import HeaderLink from './HeaderLink.astro';
 import { SITE_TITLE } from '../consts';
 
 interface Props {
-	isHero: boolean;
+	isHero?: boolean;
 }
 
 const {isHero = false} = Astro.props;
