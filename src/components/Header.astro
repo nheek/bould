@@ -8,15 +8,15 @@ interface Props {
 const {isHero = false} = Astro.props;
 ---
 
-<header class={`${isHero ? "text-white" : ""} h-[10vh] px-8`}>
+<header class={`${isHero ? "text-white" : ""} h-[10vh] px-4 md:px-8`}>
 	<nav class="w-full h-full flex items-center">
 		<h2 class="w-1/2 text-4xl"><a href="/">{SITE_TITLE}</a></h2>
 		<nav class="w-1/2">
 			<ul class="flex justify-end gap-4">
-				<li class={`${isHero ? "border-white hover:bg-white hover:text-black" : "border-black hover:bg-black hover:text-white"} flex items-center border-2 border-opacity-70 rounded-3xl px-4 py-2 cursor-pointer duration-400`}>
+				<li class={`hidden md:block ${isHero ? "border-white hover:bg-white hover:text-black" : "border-black hover:bg-black hover:text-white"} flex items-center border-2 border-opacity-70 rounded-3xl px-4 py-2 cursor-pointer duration-400`}>
 					<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
 				</li>
-				<li class={`${isHero ? "border-white hover:bg-white hover:text-black" : "border-black hover:bg-black hover:text-white"} border-2 border-opacity-70 rounded-3xl px-4 py-2 cursor-pointer duration-400`}>fake-email@nheek.com</li>
+				<li class={`hidden md:block ${isHero ? "border-white hover:bg-white hover:text-black" : "border-black hover:bg-black hover:text-white"} border-2 border-opacity-70 rounded-3xl px-4 py-2 cursor-pointer duration-400`}>fake-email@nheek.com</li>
 				<li class={`${isHero ? "border-white hover:bg-white hover:text-black" : "border-black hover:bg-black hover:text-white"} border-2 border-opacity-70 rounded-3xl px-4 py-2 cursor-pointer duration-400`}>Menu</li>
 			</ul>
 		</nav>
