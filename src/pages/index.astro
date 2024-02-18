@@ -21,7 +21,7 @@ const sideHero2 = posts.find((post) => post.data.isSideHero2);
 	<body>
 		<Header />
 		<main class="h-[90vh] w-full md:w-full flex flex-col items-center md:items-start md:flex-row gap-2 text-white p-2 md:p-4">
-			<section 
+			<div 
 				style={`
 					background: linear-gradient(to top, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.5)) 0% / cover, 
 							linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.25)),
@@ -47,8 +47,8 @@ const sideHero2 = posts.find((post) => post.data.isSideHero2);
 						<span>by {heroPost?.data.author}</span>
 					</button>
 				</div>
-			</section>
-			<section class="h-full w-full md:w-[30%] flex flex-col gap-2">
+			</div>
+			<div class="h-full w-full md:w-[30%] flex flex-col gap-2">
 				<div 
 					style={`
 						background: linear-gradient(to top, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.5)) 0% / cover, 
@@ -76,7 +76,7 @@ const sideHero2 = posts.find((post) => post.data.isSideHero2);
 						<h3 class="text-xl md:text-3xl">{sideHero2?.data.title}</h3>
 					</a>
 				</div>
-			</section>
+			</div>
 		</main>
 		<Footer />
 	</body>

@@ -1,5 +1,5 @@
-# Use the official Node.js image as the base image
-FROM node:21-alpine
+# Stage 1: Build Stage
+FROM node:21-alpine AS build
 
 # Set the working directory inside the container
 WORKDIR /usr/src/app
@@ -15,6 +15,15 @@ COPY . .
 
 # Build the Next.js application
 RUN npm run build
+
+# Stage 2: Production Stage
+FROM node:21-alpine AS production
+
+# Set the working directory inside the container
+WORKDIR /usr/src/app
+
+# Copy built assets from the build stage
+COPY --from=build /usr/src/app/dist .
 
 # Start the Next.js application
 CMD ["npm", "start"]
