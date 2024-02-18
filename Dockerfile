@@ -23,7 +23,7 @@ FROM node:21-alpine AS production
 WORKDIR /usr/src/app
 
 # Copy built assets from the build stage
-COPY --from=build /usr/src/app/dist ./dist
+COPY --from=build /usr/src/app .
 
 # Start the Next.js application
 CMD ["npm", "start"]
