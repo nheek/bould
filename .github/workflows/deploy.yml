@@ -32,4 +32,4 @@ jobs:
             docker pull ${{ secrets.DOCKERHUB_USERNAME }}/bould:latest
             docker stop bould || true
             docker rm bould || true
-            docker run -d --name bould --restart=unless-stopped -p 3012:3000 ${{ secrets.DOCKERHUB_USERNAME }}/bould:latest
+            docker run -d --name bould --restart=unless-stopped -p 3012:4321 ${{ secrets.DOCKERHUB_USERNAME }}/bould:latest
