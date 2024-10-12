@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: bould-deployment
+  labels:
+    app: bould
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: bould
+  template:
+    metadata:
+      labels:
+        app: bould
+    spec:
+      imagePullSecrets:
+      - name: regcred  # Reference to the secret created for Docker Hub
+      containers:
+      - name: bould
+        image: nheek/bould:latest  # Use your Docker image
+        ports:
+        - containerPort: 8080  # The port your app is running on
+        resources:
+          requests:
+            memory: "40Mi"  # Minimum memory requested for the container
+          limits:
+            memory: "100Mi"  # Maximum memory allowed for the container
