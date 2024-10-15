@@ -2,12 +2,13 @@ apiVersion: v1
 kind: Service
 metadata:
   name: bould-service
+  namespace: static
   labels:
     app: bould
 spec:
-  type: ClusterIP  # This is fine for Ingress
+  type: ClusterIP
   ports:
-    - port: 80  # Port for accessing the service
-      targetPort: 8080  # Port your app is running on inside the container
+    - port: 80
+      targetPort: 8080
   selector:
-    app: bould  # Ensure this matches your deployment labels
+    app: bould

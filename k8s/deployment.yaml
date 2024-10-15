@@ -2,6 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: bould-deployment
+  namespace: static
   labels:
     app: bould
 spec:
@@ -23,6 +24,6 @@ spec:
         - containerPort: 8080  # The port your app is running on
         resources:
           requests:
-            memory: "40Mi"  # Minimum memory requested for the container
+            memory: "30Mi"
           limits:
-            memory: "100Mi"  # Maximum memory allowed for the container
+            memory: "60Mi"
