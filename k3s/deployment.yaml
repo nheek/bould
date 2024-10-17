@@ -2,7 +2,6 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: bould-d
-  namespace: static
   labels:
     app: bould
 spec:
@@ -25,3 +24,5 @@ spec:
         resources:
           requests:
             memory: "30Mi"
+          limits:
+            memory: "70Mi"

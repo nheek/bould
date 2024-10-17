@@ -29,9 +29,7 @@ jobs:
 
       - name: Deploy to Kubernetes
         run: |
-          kubectl apply -f k8s/deployment.yaml
-          kubectl apply -f k8s/service.yaml
-          kubectl apply -f k8s/ingress.yaml
-          kubectl apply -f k8s/hpa.yaml
-          # kubectl apply -f k8s/vpa.yaml
-          kubectl rollout restart deployment -n static bould-d
+          kubectl apply -f k3s/deployment.yaml
+          kubectl apply -f k3s/service.yaml
+          kubectl apply -f k3s/ingress.yaml
+          kubectl rollout restart deployment bould-d
