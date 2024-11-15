@@ -3,21 +3,13 @@ kind: Ingress
 metadata:
   name: bould-ingress
   annotations:
-    nginx.ingress.kubernetes.io/rewrite-target: /
+    # Optional: Add Traefik-specific annotations if needed
+    # traefik.ingress.kubernetes.io/router.entrypoints: web
+    # traefik.ingress.kubernetes.io/rewrite-target: /
 spec:
-  ingressClassName: nginx
+  ingressClassName: traefik
   rules:
   - host: bould.nheek.com
-    http:
-      paths:
-      - path: /
-        pathType: Prefix
-        backend:
-          service:
-            name: bould-service
-            port:
-              number: 80
-  - host: bould.nheek.no
     http:
       paths:
       - path: /

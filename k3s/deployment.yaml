@@ -15,14 +15,14 @@ spec:
         app: bould
     spec:
       imagePullSecrets:
-      - name: regcred
+      - name: regcrednheek
       containers:
       - name: bould
-        image: nheek/bould:latest
+        image: reg.nheek.com/nheek/bould:latest
         ports:
         - containerPort: 8080
         resources:
           requests:
-            memory: "30Mi"
+            memory: "40Mi"
           limits:
             memory: "70Mi"
