@@ -15,14 +15,29 @@ spec:
         app: bould
     spec:
       imagePullSecrets:
-      - name: regcrednheek
+        - name: regcrednheek
       containers:
-      - name: bould
-        image: reg.nheek.com/nheek/bould:latest
-        ports:
-        - containerPort: 8080
-        resources:
-          requests:
-            memory: "40Mi"
-          limits:
-            memory: "70Mi"
+        - name: bould
+          image: reg.nheek.com/nheek/bould:latest
+          ports:
+            - containerPort: 8080
+          resources:
+            requests:
+              memory: "40Mi"
+              cpu: "40m"
+          readinessProbe:
+            httpGet:
+              path: /
+              port: 8080
+            initialDelaySeconds: 10
+            periodSeconds: 2
+            timeoutSeconds: 2
+            failureThreshold: 10
+            successThreshold: 1
+          livenessProbe:
+            httpGet:
+              path: /
+              port: 8080
+            initialDelaySeconds: 10
+            periodSeconds: 2
+            failureThreshold: 10
