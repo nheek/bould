@@ -5,7 +5,6 @@ RUN npm install
 COPY . .
 RUN npm run build
 
-FROM node:21-alpine AS production
-WORKDIR /usr/src/app
-COPY --from=build /usr/src/app .
-CMD ["npm", "start"]
+FROM lipanski/docker-static-website:latest AS production
+EXPOSE 3000
+COPY --from=build /usr/src/app/dist .
